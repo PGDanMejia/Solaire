@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="img/logosolairepequeño.png">
+
+    <title>Solaire</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <link href="css/dashboard.css" rel="stylesheet">
+  </head>
+
+  <body id="cuerpo-home">
+    <nav class="navbar navbar-dark fixed-top bg-dark  flex-nowrap p-0 shadow">
+      <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Solaire</a>
+      <input class="form-control form-control-dark w-100" type="text" placeholder="Buscar" aria-label="Search">
+    <!-- Default dropleft button -->
+<div class="btn-group dropleft">
+  <button id="nuevo-boton" type="button" class="btn btn-secondary dropdown-toggle botones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Nuevo...
+  </button>
+  <div class="dropdown-menu">
+    <!-- Dropdown menu links -->
+    <a onclick="nuevoElemento(1);" class="dropdown-item" href="#"><i class="fas fa-file-medical"></i> Nuevo archivo</a>
+    <a onclick="nuevoElemento(2);" class="dropdown-item" href="#"><i class="fas fa-folder"></i> Nueva carpeta</a>
+    <a onclick="nuevoElemento(3);" class="dropdown-item" href="#"><i class="fas fa-user-plus"></i> Nuevo contacto</a>
+
+  </div>
+</div>
+
+
+ 
+      <!-- Default dropleft button -->
+<div class="btn-group dropleft">
+  <button id="nombre-usuario-boton" type="button" class="btn btn-secondary dropdown-toggle botones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+   
+  </button>
+  <div class="dropdown-menu">
+    <!-- Dropdown menu links -->
+    <a class="dropdown-item" href="#"><i class="fas fa-user-alt"></i> Su Perfil</a>
+    <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configuración</a>
+    <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+
+  </div>
+</div>
+
+    </nav>
+    
+    <div class="container-fluid" >
+      <div class="row" >
+        <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky letras-sidebar" style="background-color: rgb(253, 191, 97)">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="#">
+                  <i class="fas fa-folder"></i>
+                  Mis archivos <span class="sr-only">(current)</span>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-share-alt-square"></i>
+                  Compartido conmigo
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-star"></i>
+                  Más utilizados
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-user-clock"></i>
+                  Recientes
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">
+                  <i class="fas fa-trash"></i>
+                  Basura
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link letras-sidebar" href="#">
+                  <i class="fas fa-shopping-cart"></i>
+                  Planes de pago
+                </a>
+              </li>
+            </ul>
+
+           
+          </div>
+              
+        </nav>
+
+
+
+        <main role="main" class="col-md-9 ml-auto col-lg-10  ">
+
+
+          <div id="div-archivos" class="row">
+              
+              <div style="background-color: #FCA745; width:100%" class="content col-xl-12 col-lg-12 col-md-12 col-xs-12 col-12">
+                  <label class="direccion"><i class="fas fa-folder"></i>  Mis archivos / <i class="fas fa-folder"></i>  Archivos de prueba</label>
+              </div>
+             
+            <!--div class="archivos content col-xl-2 col-lg-2 col-md-4 col-xs-6 col-6" >
+              <img src="img/Programacion/java.png" alt="">
+              <p class="archivos-texto">Hola.java</p>
+            </div-->
+
+            <!--div class="archivos content col-xl-2 col-lg-2 col-md-4 col-xs-6 col-6" >
+              <img src="img/Programacion/folder.png" alt="">
+              <p class="archivos-texto">Carpeta 1</p>
+            </div-->
+            
+            
+        </div>
+        </main>
+      </div>
+    </div>
+
+
+
+
+
+<!-- Modal nuevo archivo-->
+<div class="modal fade" id="nuevo-archivo-div" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo archivo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="nuevoArchivo">Nombre archivo</label>
+        <input type="text" class="form-control" id="nombre-archivo" placeholder="Nombre del arhivo">
+        <br>
+        <label for="exampleFormControlSelect1">Tipo archivo</label>
+        <select class="form-control" id="tipo-archivo">
+          <option value="css">css</option>
+          <option value="html">html</option>
+          <option value="java">java</option>
+          <option value="javascript">javascript</option>
+          <option value="json">json-file</option>
+          <option value="php">php</option>
+          <option value="python">python</option>
+          <option value="ruby">ruby</option>
+          <option value="xml">xml</option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button id="agregar-archivo" type="button" class="btn btn-primary">Agregar archivo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal nueva carpeta-->
+<div class="modal fade" id="nueva-carpeta-div" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Nueva carpeta</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="nuevoArchivo">Nombre carpeta</label>
+        <input type="text" class="form-control" id="nombre-carpeta" placeholder="Nombre de la carpeta">
+        <br>
+
+      </div>
+      <div class="modal-footer">
+        <button id="agregar-carpeta" type="button" class="btn btn-primary">Agregar carpeta</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal nueva carpeta-->
+<div class="modal fade" id="nuevo-contacto-div" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Nuevo contacto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Agregar contactos</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <!--script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script-->
+    <script src="assets/js/vendor/popper.min.js"></script>
+    <script src="dist/js/bootstrap.min.js"></script>
+    <script src="assets/js/vendor/jquery-slim.min.js"></script>
+
+    <!-- Icons -->
+    <script src="https://unpkg.com/feather-icons/dist/feather.min.js"></script>
+    <script>
+      feather.replace()
+    </script>
+
+    <!-- Graphs -->
+  <script src="js/home.js"></script>
+  <script src="js/jquery.min.js"></script>
+  <script src="js/bootstrap.js"></script>
+  </body>
+</html>

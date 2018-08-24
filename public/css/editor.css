@@ -1,0 +1,16 @@
+body{
+    font-family: 'Titillium Web', sans-serif;
+}
+
+#editor{
+    height: 926px;
+    min-height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    font-size: 1.1em;
+}
+
+.botones{
+    background-color: transparent;
+    border-color: transparent;
+  }
