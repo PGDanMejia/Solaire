@@ -173,3 +173,28 @@ body {
 #mis-archivos-hover:hover{
   cursor:pointer; cursor: hand;
 }
+
+/*Context Menu*/
+.context-menu {
+  width: 200px;
+  height: auto;
+  box-shadow: 0 0 20px 0 #ccc;
+  position: absolute;
+  display: none;
+}
+
+.context-menu ul{
+  list-style: none;
+  padding: 5px 0px 5px 0px;
+}
+
+.context-menu ul li{
+  padding: 10px 5px 10px 5px;
+  border-left: 4px solid transparent;
+  cursor: pointer;
+}
+
+.context-menu ul li:hover{
+  background: #FB8604;
+  border-left: 4px solid;
+}

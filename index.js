@@ -3,6 +3,7 @@ var session = require("express-session");
 var bodyParser = require("body-parser");
 var mysql = require("mysql");
 var cookieParser = require("cookie-parser");
+
 var app = express();
 
 
@@ -68,7 +69,7 @@ app.post("/registrar-usuario", function(request, response){
 
 app.post("/login", function(peticion, respuesta){
     var conexion = mysql.createConnection(credenciales);
-    conexion.query("SELECT codigo_usuario,  correo, nombre, apellido FROM tbl_usuarios WHERE correo=? and contrasena=?",
+    conexion.query("SELECT * FROM tbl_usuarios WHERE correo=? and contrasena=?",
         [peticion.body.correo, peticion.body.contrasena],
         function(err, data, fields){
                 if (data.length>0){
@@ -76,6 +77,7 @@ app.post("/login", function(peticion, respuesta){
                     peticion.session.codigoUsuario = data[0].codigo_usuario;
                     peticion.session.nombre = data[0].nombre;
                     peticion.session.apellido = data[0].apellido;
+                    peticion.session.codigo_plan = data[0].codigo_plan;
                     data[0].estatus = 0;
                     respuesta.cookie("carpeta", 0)
                     respuesta.send(data[0]); 
@@ -103,6 +105,20 @@ app.post("/guardar-archivo", function(request, response){
     ); 
 });
 
+app.post("/actualizar-perfil", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = 'UPDATE tbl_usuarios SET nombre = ?, apellido = ?, correo = ?, contrasena = ? WHERE codigo_usuario = ?';
+    
+    conexion.query(
+        sql,
+        [request.body.nombre, request.body.apellido, request.body.correo, request.body.contrasena, request.session.codigoUsuario],
+        function(err, result){
+            if (err) throw err;
+            response.send(result);
+        }
+    ); 
+});
+
 
 
 app.get("/obtener-archivos", function(request, response){
@@ -110,6 +126,19 @@ app.get("/obtener-archivos", function(request, response){
     var sql = `SELECT * FROM tbl_archivos WHERE codigo_usuario = ? AND codigo_carpeta = ?`;
     var usuarios = [];
     conexion.query(sql, [request.session.codigoUsuario, request.cookies.carpeta])
+    .on("result", function(resultado){
+        usuarios.push(resultado);
+    })
+    .on("end",function(){
+        response.send(usuarios);
+    });   
+});
+
+app.get("/obtener-archivos-totales", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = `SELECT * FROM tbl_archivos WHERE codigo_usuario = ?`;
+    var usuarios = [];
+    conexion.query(sql, [request.session.codigoUsuario])
     .on("result", function(resultado){
         usuarios.push(resultado);
     })
@@ -223,6 +252,44 @@ app.post("/nueva-carpeta", function(request, response){
 
 
 
+app.post("/agregar-contacto", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql_insertar = 'INSERT INTO tbl_amigos(codigo_usuario, codigo_usuario_amigo) VALUES (?,?)';
+    var sql_consultar = 'SELECT * FROM tbl_amigos WHERE codigo_usuario = ? and codigo_usuario_amigo = ?';
+    
+    conexion.query(sql_consultar,[request.session.codigoUsuario, request.body.codigo_contacto],function (err, data, fields) { 
+        if(data.length>0){
+            response.send({estatus:1, mensaje:"Ya tienes ese contacto."});
+        }else{
+            conexion.query(
+                sql_insertar,
+                [request.session.codigoUsuario, request.body.codigo_contacto],
+                function(err, result){
+                    if (err) throw err;
+            
+                    response.send(result);
+                    
+                }
+            );
+        }
+     });  
+});
+
+
+
+app.get("/obtener-todos-usuarios", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = `SELECT codigo_usuario, nombre, apellido, correo FROM tbl_usuarios`;
+    var usuarios = [];
+    conexion.query(sql, [request.session.codigoUsuario])
+    .on("result", function(resultado){
+        usuarios.push(resultado);
+    })
+    .on("end",function(){
+        response.send(usuarios);
+    });   
+});
+
 
 
 app.post("/cambiar-codigo-carpeta", function(peticion, respuesta){
@@ -233,7 +300,7 @@ app.post("/cambiar-codigo-carpeta", function(peticion, respuesta){
 
 
  app.get("/sesion",function(peticion, respuesta){
-    respuesta.send({codigo:peticion.session.codigoUsuario, nombre:peticion.session.nombre, apellido:peticion.session.apellido});
+    respuesta.send({codigo:peticion.session.codigoUsuario, nombre:peticion.session.nombre, apellido:peticion.session.apellido, correo:peticion.session.correo, codigo_plan:peticion.session.codigo_plan});
 	//respuesta.send("Sesion eliminada");
 });
 //Crear y levantar el servidor web.

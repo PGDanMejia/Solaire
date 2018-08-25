@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Solaire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/logosolairepequeño.png" type="image/png"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark  flex-nowrap p-0 shadow">
+        <a style="color: #FB8604; text-align: center; font-size: 1.2em;" class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">S O L A I R E</a>
+              <!-- Default dropleft button -->
+              <p id="parrafo-apellido-prefil" style="font-size: 1.2em;"></p>
+<div class="btn-group dropleft">
+    <button id="nombre-usuario-boton" type="button" class="btn btn-secondary dropdown-toggle botones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     
+    </button>
+    <div class="dropdown-menu">
+      <!-- Dropdown menu links -->
+      <a class="dropdown-item" href="perfil.html"><i class="fas fa-user-alt"></i> Su Perfil</a>
+      <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Configuración</a>
+      <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+  
+    </div>
+  </div>
+      </nav>
+      
+      <div class="container-fluid" >
+        <div class="row" >
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky letras-sidebar" style="background-color: rgb(253, 191, 97)">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="home.html">
+                    <i class="fas fa-folder"></i>
+                    Mis archivos <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fas fa-share-alt-square"></i>
+                    Compartido conmigo
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fas fa-star"></i>
+                    Más utilizados
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fas fa-user-clock"></i>
+                    Recientes
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fas fa-trash"></i>
+                    Basura
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link letras-sidebar" href="#">
+                    <i class="fas fa-shopping-cart"></i>
+                    Planes de pago
+                  </a>
+                </li>
+              </ul>
+              <input id="hidden" type="hidden">
+             
+            </div>
+            
+          </nav>
+
+          <main id="principal" role="main"  class="col-md-9 ml-auto col-lg-10  no-margin">
+
+          <div class="parrafos-perfil">
+            <h1 class="parrafos-perfil">Perfil de usuario</h1>
+            <br>
+            <br>
+            <h3>Nombre</h3>
+            <input type="text" class="form-control" id="nombre-modificar" placeholder="Nombre">
+            <br>
+            <br>
+            <h3>Apellido</h3>
+            <input type="text" class="form-control" id="apellido-modificar" placeholder="Apellido">
+            <br>
+            <br>
+            <h3>Correo</h3>
+            <input type="text" class="form-control" id="correo-modificar" placeholder="Correo">
+            <br>
+            <br>
+            <h3>Contraseña</h3>
+            <input type="password" class="form-control" id="contrasena-modificar" placeholder="Contraseña">
+            <br>
+            <br>
+            <button id="boton-modificar" type="button" class="btn btn-primary">Actualizar</button>
+          </div>
+
+          </main>
+          <script src="assets/js/vendor/popper.min.js"></script>
+          <script src="dist/js/bootstrap.min.js"></script>
+          <script src="assets/js/vendor/jquery-slim.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        
+          <script src="js/jquery.min.js"></script>
+          <script src="js/bootstrap.js"></script>
+          <script src="js/configurar.js"></script>
+</body>
+</html>

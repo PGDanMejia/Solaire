@@ -145,6 +145,28 @@ $("#agregar-carpeta").click(function(){
 
 
 
+$("#agregar-contacto").click(function(){
+	//alert("Enviar mensaje: " + $("#txta-mensaje").val());
+		
+        $.ajax({
+            url:"/agregar-contacto",
+            method:"POST",
+            data:"codigo_contacto="+$("#select-contactos").val(),
+            dataType:"json",
+            success:function(response){
+                if(response.estatus == 1){
+                    $('#contacto-existente').modal();
+                }else{
+					$('#contacto-agregado').modal();
+					
+                }
+                console.log(response);
+            }
+        });
+
+    
+	
+});
 
 
 
@@ -164,6 +186,18 @@ $(document).ready(function(){
 			console.log(respuesta);
         }
     });
+
+	$.ajax({
+		url:"/obtener-todos-usuarios",
+		dataType:"json",
+		success:function(respuesta){
+			console.log(respuesta);
+			for(var i=0; i<respuesta.length; i++){
+				$("#select-contactos").append('<option value="'+respuesta[i].codigo_usuario+'">'+respuesta[i].nombre + " " + respuesta[i].apellido +'</option>');
+	
+			}
+		}
+	});
 
 	
 });
