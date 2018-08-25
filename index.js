@@ -105,6 +105,54 @@ app.post("/guardar-archivo", function(request, response){
     ); 
 });
 
+
+
+app.post("/anadir-favorito", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = 'UPDATE tbl_archivos SET estado = 1 WHERE codigo_archivo = ?';
+    
+    conexion.query(
+        sql,
+        [request.cookies.codigo],
+        function(err, result){
+            if (err) throw err;
+            response.send(result);
+        }
+    ); 
+});
+
+app.post("/eliminar-archivo", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = 'UPDATE tbl_archivos SET estado = 2 WHERE codigo_archivo = ?';
+    
+    conexion.query(
+        sql,
+        [request.cookies.codigo],
+        function(err, result){
+            if (err) throw err;
+            response.send(result);
+        }
+    ); 
+});
+
+
+app.post("/actualizar-nombre-archivo", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = 'UPDATE tbl_archivos SET nombre_archivo = ? WHERE codigo_archivo = ?';
+    
+    conexion.query(
+        sql,
+        [request.body.nombre, request.cookies.codigo],
+        function(err, result){
+            if (err) throw err;
+            response.send(result);
+        }
+    ); 
+});
+
+
+
+
 app.post("/actualizar-perfil", function(request, response){
     var conexion = mysql.createConnection(credenciales);
     var sql = 'UPDATE tbl_usuarios SET nombre = ?, apellido = ?, correo = ?, contrasena = ? WHERE codigo_usuario = ?';
@@ -120,10 +168,108 @@ app.post("/actualizar-perfil", function(request, response){
 });
 
 
+app.post("/actualizar-plan-usuario", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = 'UPDATE tbl_usuarios SET codigo_plan = ? WHERE codigo_usuario = ?';
+    
+    conexion.query(
+        sql,
+        [request.body.codigo_plan, request.session.codigoUsuario],
+        function(err, result){
+            if (err) throw err;
+            response.send(result);
+        }
+    ); 
+});
+
+
+
+app.post("/registrar-factura", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = `INSERT INTO 
+               tbl_facturacion(codigo_usuario, codigo_plan, monto) 
+               VALUES (?,?,?)`;
+    
+    conexion.query(
+        sql,
+        [request.session.codigoUsuario, request.body.codigo_plan, request.body.monto],
+        function(err, result){
+            if (err) throw err;
+            response.send(result);
+        }
+    ); 
+});
+
+
+app.post("/compartir-archivo", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = `INSERT INTO 
+               tbl_archivos_compartidos(codigo_archivo, codigo_usuario) 
+               VALUES (?,?)`;
+    conexion.query('SELECT * FROM tbl_archivos_compartidos WHERE codigo_archivo = ? AND codigo_usuario = ?',[request.cookies.codigo, request.body.codigo_contacto],function (err, data, fields) { 
+    if(data.length>0){
+        response.send({estatus:1, mensaje:"Ya has compartido este archivo con ese usuario."});
+    }else{
+    conexion.query(
+        sql,
+        [request.cookies.codigo, request.body.codigo_contacto],
+        function(err, result){
+            if (err) throw err;
+            response.send(result);
+        }
+    ); 
+    }
+});
+});
+
+
+app.get("/historial-facturas", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = `SELECT * FROM tbl_facturacion WHERE codigo_usuario = ?`;
+    var facturas = [];
+    conexion.query(sql, [request.session.codigoUsuario])
+    .on("result", function(resultado){
+        facturas.push(resultado);
+    })
+    .on("end",function(){
+        response.send(facturas);
+    });   
+});
+
+
+
+
 
 app.get("/obtener-archivos", function(request, response){
     var conexion = mysql.createConnection(credenciales);
-    var sql = `SELECT * FROM tbl_archivos WHERE codigo_usuario = ? AND codigo_carpeta = ?`;
+    var sql = `SELECT * FROM tbl_archivos WHERE codigo_usuario = ? AND codigo_carpeta = ? AND (estado = 0 OR estado = 1)`;
+    var usuarios = [];
+    conexion.query(sql, [request.session.codigoUsuario, request.cookies.carpeta])
+    .on("result", function(resultado){
+        usuarios.push(resultado);
+    })
+    .on("end",function(){
+        response.send(usuarios);
+    });   
+});
+
+app.get("/obtener-papelera", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = `SELECT * FROM tbl_archivos WHERE codigo_usuario = ? AND codigo_carpeta = ? AND estado = 2`;
+    var usuarios = [];
+    conexion.query(sql, [request.session.codigoUsuario, request.cookies.carpeta])
+    .on("result", function(resultado){
+        usuarios.push(resultado);
+    })
+    .on("end",function(){
+        response.send(usuarios);
+    });   
+});
+
+
+app.get("/obtener-favoritos", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = `SELECT * FROM tbl_archivos WHERE codigo_usuario = ? AND codigo_carpeta = ? AND estado = 1`;
     var usuarios = [];
     conexion.query(sql, [request.session.codigoUsuario, request.cookies.carpeta])
     .on("result", function(resultado){
@@ -216,6 +362,7 @@ app.get("/obtener-sesion", function(peticion, respuesta){
 });
 
 
+
 app.post("/nuevo-archivo", function(request, response){
     var conexion = mysql.createConnection(credenciales);
     var sql = `INSERT INTO 
@@ -275,6 +422,21 @@ app.post("/agregar-contacto", function(request, response){
      });  
 });
 
+
+app.get("/obtener-contactos", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = ` SELECT b.codigo_usuario_amigo, a.nombre, a.apellido FROM tbl_usuarios a 
+                INNER JOIN tbl_amigos b ON a.codigo_usuario = b.codigo_usuario_amigo
+                WHERE b.codigo_usuario = ?`;
+    var usuarios = [];
+    conexion.query(sql, [request.session.codigoUsuario, request.cookies.carpeta])
+    .on("result", function(resultado){
+        usuarios.push(resultado);
+    })
+    .on("end",function(){
+        response.send(usuarios);
+    });   
+});
 
 
 app.get("/obtener-todos-usuarios", function(request, response){

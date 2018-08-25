@@ -71,7 +71,7 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link letras-sidebar" href="#">
+                  <a class="nav-link letras-sidebar" href="pagos.html">
                     <i class="fas fa-shopping-cart"></i>
                     Planes de pago
                   </a>
@@ -88,27 +88,46 @@
           <div class="parrafos-perfil">
             <h1 class="parrafos-perfil">Perfil de usuario</h1>
             <br>
-            <br>
+            
             <h3>Nombre</h3>
             <p type="text" id="nombre-perfil" style="font-size: 1.2em;"></p>
             <br>
-            <br>
+            
             <h3>Apellido</h3>
             <p id="apellido-perfil" style="font-size: 1.2em;"></p>
             <br>
-            <br>
+           
             <h3>Correo</h3>
             <p id="correo-perfil" style="font-size: 1.2em;"></p>
             <br>
-            <br>
+           
             <h3>Tipo de plan</h3>
             <p id="tipo-perfil" style="font-size: 1.2em;"></p>
             <br>
-            <br>
+            
             <h3>Total de archivos subidos</h3>
             <p id="archivos-perfil" style="font-size: 1.2em;"></p>
             <br>
-            <br>
+            
+            <h3>Registros de pago</h3>
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th scope="col">Codigo de factura</th>
+                  <th scope="col">Plan</th>
+                  <th scope="col">Fecha</th>
+                  <th scope="col">Monto</th>
+                </tr>
+              </thead>
+              <tbody id="cuerpo-tabla">
+                <!--tr>
+                  <th scope="row">1</th>
+                  <td>Mark</td>
+                  <td>Otto</td>
+                  <td>@mdo</td>
+                </tr-->
+              </tbody>
+            </table>
           </div>
           </main>
           <script src="assets/js/vendor/popper.min.js"></script>

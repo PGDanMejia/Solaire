@@ -35,5 +35,29 @@ $(document).ready(function(){
             console.log(respuesta.codigo_plan);
         }   
     });
+
+    $.ajax({
+		url:"/historial-facturas",
+		dataType:"json",
+		success:function(respuesta){
+			console.log(respuesta);
+			for(var i=0; i<respuesta.length; i++){
+                if(respuesta[i].codigo_plan == 1){
+                    plan = "Básico"
+                }else if(respuesta[i].codigo_plan == 2){
+                    plan = "Avanzado"
+                }else if(respuesta[i].codigo_plan == 3){
+                    plan = "Premium"
+                }
+				$("#cuerpo-tabla").append(`<tr>
+                <th scope="row">${respuesta[i].codigo_factura}</th>
+                <td>${plan}</td>
+                <td>${respuesta[i].fecha_inicio}</td>
+                <td>${respuesta[i].monto}</td>
+              </tr>`);
+	
+			}
+		}
+	});
 	
 });

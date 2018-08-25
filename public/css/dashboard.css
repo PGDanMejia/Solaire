@@ -198,3 +198,17 @@ body {
   background: #FB8604;
   border-left: 4px solid;
 }
+
+.pago{
+  background: #FB8604;
+  font-size: 1.2em;
+  transition: 0.4s;
+}
+
+.pago:hover{
+  background: #FCA745;
+}
+
+.card{
+  margin-top: 25px;
+}

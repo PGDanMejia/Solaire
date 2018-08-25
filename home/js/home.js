@@ -1,3 +1,81 @@
+function obtenerPapelera(){
+	$.ajax({
+		url:"/obtener-papelera",
+		dataType:"json",
+		success:function(respuesta){
+			console.log(respuesta);
+			$("#div-archivos").html("");
+			$("#div-archivos").append(
+				`<div style="background-color: #FCA745; width:100%" class="content col-xl-12 col-lg-12 col-md-12 col-xs-12 col-12">
+				<label class="direccion"><i class="fas fa-trash"></i> Papelera </label>
+			</div>`
+			);
+			for(var i=0; i<respuesta.length; i++){
+				console.log(respuesta);
+				$("#div-archivos").append(
+					`<div  class="archivos content col-xl-2 col-lg-2 col-md-4 col-xs-6 col-6" onClick="seleccionarArchivo(${respuesta[i].codigo_archivo});">
+					<img src="img/Programacion/${respuesta[i].extension_archivo}.png" alt="">
+					<p class="archivos-texto">${respuesta[i].nombre_archivo}.${respuesta[i].extension_archivo}</p>
+				  </div>`
+				);
+			}
+		}
+	});
+}
+
+
+function obtenerFavoritos(){
+	$.ajax({
+		url:"/obtener-favoritos",
+		dataType:"json",
+		success:function(respuesta){
+			console.log(respuesta);
+			$("#div-archivos").html("");
+			$("#div-archivos").append(
+				`<div style="background-color: #FCA745; width:100%" class="content col-xl-12 col-lg-12 col-md-12 col-xs-12 col-12">
+				<label class="direccion"><i class="fas fa-star"></i> Favoritos </label>
+			</div>`
+			);
+			for(var i=0; i<respuesta.length; i++){
+				console.log(respuesta);
+				$("#div-archivos").append(
+					`<div  class="archivos content col-xl-2 col-lg-2 col-md-4 col-xs-6 col-6" onClick="seleccionarArchivo(${respuesta[i].codigo_archivo});">
+					<img src="img/Programacion/${respuesta[i].extension_archivo}.png" alt="">
+					<p class="archivos-texto">${respuesta[i].nombre_archivo}.${respuesta[i].extension_archivo}</p>
+				  </div>`
+				);
+			}
+		}
+	});
+}
+
+function obtenerCompartidos(){
+	$.ajax({
+		url:"/obtener-compartidos",
+		dataType:"json",
+		success:function(respuesta){
+			console.log(respuesta);
+			$("#div-archivos").html("");
+			$("#div-archivos").append(
+				`<div style="background-color: #FCA745; width:100%" class="content col-xl-12 col-lg-12 col-md-12 col-xs-12 col-12">
+				<label class="direccion"><i class="fas fa-star"></i> Compartidos </label>
+			</div>`
+			);
+			for(var i=0; i<respuesta.length; i++){
+				console.log(respuesta);
+				$("#div-archivos").append(
+					`<div  class="archivos content col-xl-2 col-lg-2 col-md-4 col-xs-6 col-6" onClick="seleccionarArchivo(${respuesta[i].codigo_archivo});">
+					<img src="img/Programacion/${respuesta[i].extension_archivo}.png" alt="">
+					<p class="archivos-texto">${respuesta[i].nombre_archivo}.${respuesta[i].extension_archivo}</p>
+				  </div>`
+				);
+			}
+		}
+	});
+}
+
+
+
 function cambiarCarpeta(codigoCarpeta){
 	$.ajax({
 		url:"/cambiar-codigo-carpeta",

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Solaire</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="img/logosolairepequeño.png" type="image/png"/>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/editor.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,300,600' rel='stylesheet' type='text/css'>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-dark fixed-top bg-dark  flex-nowrap p-0 shadow">
+        <a style="color: #FB8604; text-align: center; font-size: 1.2em;" class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">S O L A I R E</a>
+              <!-- Default dropleft button -->
+              <p id="parrafo-apellido-prefil" style="font-size: 1.2em;"></p>
+<div class="btn-group dropleft">
+    <button id="nombre-usuario-boton" type="button" class="btn btn-secondary dropdown-toggle botones" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+     
+    </button>
+    <div class="dropdown-menu">
+      <!-- Dropdown menu links -->
+      <a class="dropdown-item" href="perfil.html"><i class="fas fa-user-alt"></i> Su Perfil</a>
+      <a class="dropdown-item" href="configurar.html"><i class="fas fa-cog"></i> Configuración</a>
+      <a class="dropdown-item" href="/logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+  
+    </div>
+  </div>
+      </nav>
+      
+      <div class="container-fluid" >
+        <div class="row" >
+          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+            <div class="sidebar-sticky letras-sidebar" style="background-color: rgb(253, 191, 97)">
+              <ul class="nav flex-column">
+                <li class="nav-item">
+                  <a class="nav-link active" href="home.html">
+                    <i class="fas fa-folder"></i>
+                    Mis archivos <span class="sr-only">(current)</span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fas fa-share-alt-square"></i>
+                    Compartido conmigo
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fas fa-star"></i>
+                    Más utilizados
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fas fa-user-clock"></i>
+                    Recientes
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">
+                    <i class="fas fa-trash"></i>
+                    Basura
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link letras-sidebar" href="pagos.html">
+                    <i class="fas fa-shopping-cart"></i>
+                    Planes de pago
+                  </a>
+                </li>
+              </ul>
+              <input id="hidden" type="hidden">
+             
+            </div>
+            
+          </nav>
+
+          <main role="main" class="col-md-9 ml-auto col-lg-10  ">
+          <div id="precios" class="container-fluid">
+            <div class="container py-5">
+                  <div class="row">
+                        <div class="col-xl-4 col-lg-4 col-md-1 col-xs-1 col-1 ">
+                              <div class="card text-center" >
+                                 
+                                          <div class="card-body">
+                                                <div class="py-3">
+                                                      <span class="h1">$</span><span class="display-1 align-middle">5</span>
+                                                </div>
+                                                <p class="h1">Básico</p>
+                                                <h5 class="card-title">Lo esencial a tu alcance</h5>
+                                                <p class="card-text">Permite ampliar la cantidad de archivos en la nube y aumenta almacenamiento disponible.</p>
+                                          
+                                          </div>
+                                          <a onclick="contratarPlan(1);" href="#" class="pago card-footer btn text-white">Contratar</a>
+                              </div>
+
+                              
+                        </div>
+                        <div class="col-xl-4 col-lg-4 col-md-1 col-xs-1 col-1">
+                                    <div class="card text-center" >
+                                       
+                                                <div class="card-body">
+                                                      <div class="py-3">
+                                                            <span class="h1">$</span><span class="display-1 align-middle">10</span>
+                                                      </div>
+                                                      <p class="h1">Avanzado</p>
+                                                      <h5 class="card-title">Siente una mejor experiencia</h5>
+                                                      <p class="card-text">Acceso a nuevas actividades y aplicaciones que mejoraran tu experiencia.</p>
+                                                
+                                                </div>
+                                                <a onclick="contratarPlan(2);" href="#" class="pago card-footer btn text-white">Contratar</a>
+                                    </div>
+      
+                                    
+                              </div>
+                              <div class="col-xl-4 col-lg-4 col-md-1 col-xs-1 col-1">
+                                          <div class="card text-center" >
+                                             
+                                                      <div class="card-body">
+                                                            <div class="py-3">
+                                                                  <span class="h1">$</span><span class="display-1 align-middle">15</span>
+                                                            </div>
+                                                            <p class="h1">Premium</p>
+                                                            <h5 class="card-title">Más allá de tus expectativas</h5>
+                                                            <p class="card-text">Trabaja de una mejor manera con una mayor capacidad y robustez a tu alcance. Tu pones los limites</p>
+                                                      
+                                                      </div>
+                                                      <a onclick="contratarPlan(3);" href="#" class="pago card-footer btn text-white">Contratar</a>
+                                          </div>
+            
+                                          
+                                    </div>
+                  </div>
+            </div>
+      </div>
+          </main>
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="pago-realizado" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">¡Exito!</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            Te has suscrito a un nuevo plan.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+            <!--button type="button" class="btn btn-primary">Save changes</button-->
+          </div>
+        </div>
+      </div>
+    </div>
+
+          <script src="assets/js/vendor/popper.min.js"></script>
+          <script src="dist/js/bootstrap.min.js"></script>
+          <script src="assets/js/vendor/jquery-slim.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+          
+          <script src="js/pagos.js"></script>
+          <script src="js/jquery.min.js"></script>
+          <script src="js/bootstrap.js"></script>
+</body>
+</html>
