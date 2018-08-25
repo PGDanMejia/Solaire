@@ -38,6 +38,28 @@ $("#actualizar-nombre").click(function(){
 });
 
 
+
+$("#boton-mover-archivo").click(function(){
+    var parametros = "codigo_carpeta="+$("#select-carpetas").val();
+    
+	$.ajax({
+		url:"/mover-archivos",
+		method:"POST",
+		data:parametros,
+		dataType:"json",
+		success:function(respuesta){
+			if (respuesta.affectedRows==1){
+				$('#mover-archivo').modal('hide');
+				nombre();
+			}
+			console.log(respuesta);
+			
+		}
+	});
+});
+
+
+
 $("#boton-compartir-archivo").click(function(){
     var parametros = "codigo_contacto="+$("#select-contactos").val();
     console.log($("#select-contactos").val());
@@ -96,7 +118,7 @@ function nuevaAccion(codigoAccion){
 	}else if(codigoAccion == 3){
 		$('#compartir-archivo').modal();
 	}else if(codigoAccion == 4){
-
+		$('#mover-archivo').modal();
 	}else if(codigoAccion == 5){
 		$.ajax({
 			url:"/eliminar-archivo",
@@ -168,4 +190,20 @@ $(document).ready(function(){
         }   
     });
 	
+
+	$.ajax({
+        url:"/obtener-carpetas",
+        data:"",
+        method:"GET",
+        dataType:"json",
+        success:function(respuesta){
+			for(var i=0; i<respuesta.length; i++){
+				$("#select-carpetas").append('<option value="'+respuesta[i].codigo_carpeta+'">'+respuesta[i].nombre_carpeta+'</option>');
+				console.log(respuesta);
+				console.log(respuesta.nombre);
+				console.log(respuesta.codigo_plan);
+			}
+        }   
+    });
+
 });

@@ -34,8 +34,8 @@
     </div>
   </div>
       </nav>
-      
       <div class="container-fluid" >
+      
         <div class="row" >
           <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky letras-sidebar" style="background-color: rgb(253, 191, 97)">
@@ -47,27 +47,21 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-share-alt-square"></i>
+                  <a onclick="obtenerCompartidos();" class="nav-link" href="#">
+                    <i  class="fas fa-share-alt-square"></i>
                     Compartido conmigo
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a onclick="obtenerFavoritos();" class="nav-link" href="#">
                     <i class="fas fa-star"></i>
-                    Más utilizados
+                    Favoritos
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-user-clock"></i>
-                    Recientes
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a onclick="obtenerPapelera();" class="nav-link" href="#">
                     <i class="fas fa-trash"></i>
-                    Basura
+                    Papelera
                   </a>
                 </li>
                 <li class="nav-item">
@@ -77,9 +71,10 @@
                   </a>
                 </li>
               </ul>
-              <input id="hidden" type="hidden">
+  
              
             </div>
+                
             
           </nav>
 

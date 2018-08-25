@@ -33,55 +33,51 @@
   
     </div>
   </div>
-      </nav>
+</nav>
+    
+<div class="container-fluid" >
       
-      <div class="container-fluid" >
-        <div class="row" >
-          <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-            <div class="sidebar-sticky letras-sidebar" style="background-color: rgb(253, 191, 97)">
-              <ul class="nav flex-column">
-                <li class="nav-item">
-                  <a class="nav-link active" href="home.html">
-                    <i class="fas fa-folder"></i>
-                    Mis archivos <span class="sr-only">(current)</span>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-share-alt-square"></i>
-                    Compartido conmigo
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-star"></i>
-                    Más utilizados
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-user-clock"></i>
-                    Recientes
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-trash"></i>
-                    Basura
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link letras-sidebar" href="pagos.html">
-                    <i class="fas fa-shopping-cart"></i>
-                    Planes de pago
-                  </a>
-                </li>
-              </ul>
-              <input id="hidden" type="hidden">
-             
-            </div>
-            
-          </nav>
+  <div class="row" >
+    <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+      <div class="sidebar-sticky letras-sidebar" style="background-color: rgb(253, 191, 97)">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link active" href="home.html">
+              <i class="fas fa-folder"></i>
+              Mis archivos <span class="sr-only">(current)</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="obtenerCompartidos();" class="nav-link" href="#">
+              <i  class="fas fa-share-alt-square"></i>
+              Compartido conmigo
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="obtenerFavoritos();" class="nav-link" href="#">
+              <i class="fas fa-star"></i>
+              Favoritos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a onclick="obtenerPapelera();" class="nav-link" href="#">
+              <i class="fas fa-trash"></i>
+              Papelera
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link letras-sidebar" href="pagos.html">
+              <i class="fas fa-shopping-cart"></i>
+              Planes de pago
+            </a>
+          </li>
+        </ul>
+
+       
+      </div>
+          
+          
+    </nav>
 
           <main id="principal" role="main"  class="col-md-9 ml-auto col-lg-10  no-margin">
 

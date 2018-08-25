@@ -106,6 +106,20 @@ app.post("/guardar-archivo", function(request, response){
 });
 
 
+app.post("/mover-archivos", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = 'UPDATE tbl_archivos SET codigo_carpeta = ? WHERE codigo_archivo = ?';
+    
+    conexion.query(
+        sql,
+        [request.body.codigo_carpeta, request.cookies.codigo],
+        function(err, result){
+            if (err) throw err;
+            response.send(result);
+        }
+    ); 
+});
+
 
 app.post("/anadir-favorito", function(request, response){
     var conexion = mysql.createConnection(credenciales);
@@ -266,6 +280,21 @@ app.get("/obtener-papelera", function(request, response){
     });   
 });
 
+
+app.get("/obtener-compartidos", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = `SELECt a.codigo_archivo, b.nombre_archivo, b.extension_archivo from tbl_archivos_compartidos a 
+    INNER JOIN tbl_archivos b ON a.codigo_archivo = b.codigo_archivo
+    WHERE a.codigo_usuario = ?`;
+    var usuarios = [];
+    conexion.query(sql, [request.session.codigoUsuario])
+    .on("result", function(resultado){
+        usuarios.push(resultado);
+    })
+    .on("end",function(){
+        response.send(usuarios);
+    });   
+});
 
 app.get("/obtener-favoritos", function(request, response){
     var conexion = mysql.createConnection(credenciales);
@@ -430,6 +459,21 @@ app.get("/obtener-contactos", function(request, response){
                 WHERE b.codigo_usuario = ?`;
     var usuarios = [];
     conexion.query(sql, [request.session.codigoUsuario, request.cookies.carpeta])
+    .on("result", function(resultado){
+        usuarios.push(resultado);
+    })
+    .on("end",function(){
+        response.send(usuarios);
+    });   
+});
+
+
+
+app.get("/obtener-carpetas", function(request, response){
+    var conexion = mysql.createConnection(credenciales);
+    var sql = ` SELECT * from tbl_carpetas WHERE codigo_usuario = ?`;
+    var usuarios = [];
+    conexion.query(sql, [request.session.codigoUsuario])
     .on("result", function(resultado){
         usuarios.push(resultado);
     })

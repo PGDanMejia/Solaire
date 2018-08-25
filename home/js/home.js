@@ -58,7 +58,7 @@ function obtenerCompartidos(){
 			$("#div-archivos").html("");
 			$("#div-archivos").append(
 				`<div style="background-color: #FCA745; width:100%" class="content col-xl-12 col-lg-12 col-md-12 col-xs-12 col-12">
-				<label class="direccion"><i class="fas fa-star"></i> Compartidos </label>
+				<label class="direccion"><i class="fas fa-share-alt-square"></i> Compartidos conmigo </label>
 			</div>`
 			);
 			for(var i=0; i<respuesta.length; i++){

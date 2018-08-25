@@ -57,8 +57,8 @@
 
   </div>
       </nav>
-      
       <div class="container-fluid" >
+      
         <div class="row" >
           <nav class="col-md-2 d-none d-md-block bg-light sidebar">
             <div class="sidebar-sticky letras-sidebar" style="background-color: rgb(253, 191, 97)">
@@ -70,27 +70,21 @@
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-share-alt-square"></i>
+                  <a onclick="obtenerCompartidos();" class="nav-link" href="home.html">
+                    <i  class="fas fa-share-alt-square"></i>
                     Compartido conmigo
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a onclick="obtenerFavoritos();" class="nav-link" href="home.html">
                     <i class="fas fa-star"></i>
-                    Más utilizados
+                    Favoritos
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    <i class="fas fa-user-clock"></i>
-                    Recientes
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
+                  <a onclick="obtenerPapelera();" class="nav-link" href="home.html">
                     <i class="fas fa-trash"></i>
-                    Basura
+                    Papelera
                   </a>
                 </li>
                 <li class="nav-item">
@@ -100,9 +94,10 @@
                   </a>
                 </li>
               </ul>
-              <input id="hidden" type="hidden">
+  
              
             </div>
+                
             
           </nav>
 
@@ -140,7 +135,7 @@
 </div>
 
 
-<!-- Modal cambiar nombre-->
+<!-- Modal compartir archivo-->
 <div class="modal fade" id="compartir-archivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -160,6 +155,33 @@
       </div>
       <div class="modal-footer">
         <button id="boton-compartir-archivo" type="button" class="btn btn-primary">Compartir archivo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal mover archivo-->
+<div class="modal fade" id="mover-archivo" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Mover archivo</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label for="nuevoArchivo">Seleccione la carpeta</label>
+        <select id="select-carpetas" class="form-control" id="tipo-archivo">
+          <option value="0">Mi unidad</option>
+        </select>
+        <br>
+      
+      </div>
+      <div class="modal-footer">
+        <button id="boton-mover-archivo" type="button" class="btn btn-primary">Mover archivo</button>
       </div>
     </div>
   </div>
